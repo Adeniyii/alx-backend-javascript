@@ -4,11 +4,12 @@ export default function createReportObject(employeesList) {
   const keys = Object.keys(employeesList);
   const record = {};
 
-  for (const dept in keys) {
+  for (const dept of keys) {
+    console.log(dept);
     if (dept in record) {
-      record.dept.push(...employeesList[dept]);
+      record[dept].push(...employeesList[dept]);
     } else {
-      record.dept = [...employeesList[dept]];
+      record[dept] = [...employeesList[dept]];
     }
   }
 
