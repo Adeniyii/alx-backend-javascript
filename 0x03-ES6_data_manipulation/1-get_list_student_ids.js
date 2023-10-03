@@ -1,7 +1,7 @@
 export default function getListStudentIds(students) {
   if (!Array.isArray(students)) {
-    return []
+    return [];
   }
 
-  return students.map(student => student?.id).filter(id => Number.isInteger(id))
+  return students.map((student) => student.id);
 }
