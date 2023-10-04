@@ -11,6 +11,8 @@ interface TeacherInterface extends Omit<DirectorInterface, "workDirectorTasks"> 
 
 type Employee = DirectorInterface | TeacherInterface;
 
+type Subjects = "Math" | "History"
+
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home"
@@ -60,6 +62,16 @@ function executeWork(employee: Employee) {
   }
 }
 
+function teachClass(todayClass: Subjects) {
+  if (todayClass === "Math") {
+    return "Teaching Math"
+  } else {
+    return "Teaching History"
+  }
+}
+
+console.log(teachClass("Math"))
+console.log(teachClass("History"))
 console.log(createEmployee(400))
 console.log(createEmployee("400"))
 console.log(createEmployee(600))
