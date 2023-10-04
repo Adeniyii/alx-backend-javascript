@@ -10,6 +10,8 @@ interface TeacherInterface {
   workTeacherTasks(): string;
 }
 
+type Employee = DirectorInterface | TeacherInterface;
+
 class Director implements DirectorInterface {
   workFromHome(): string {
     return "Working from home"
@@ -45,6 +47,27 @@ function createEmployee(salary: number | string): DirectorInterface | TeacherInt
 
   return new Director()
 }
+
+// Using a type predicate to perform type narrowing from helper function -- very sexy
+function isDirector(employee: Employee): employee is DirectorInterface {
+  return (employee as DirectorInterface).workDirectorTasks !== undefined
+}
+
+function executeWork(employee: Employee) {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks()
+  } else {
+    return employee.workTeacherTasks()
+  }
+}
+
+
+
+
+console.log(executeWork(createEmployee(400)))
+console.log(executeWork(createEmployee(700)))
+
+
 
 console.log(createEmployee(400))
 console.log(createEmployee("400"))
