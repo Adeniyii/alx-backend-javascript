@@ -4,9 +4,8 @@ interface DirectorInterface {
   workDirectorTasks(): string;
 }
 
-interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
+// just being fancy.. and DRY
+interface TeacherInterface extends Omit<DirectorInterface, "workDirectorTasks"> {
   workTeacherTasks(): string;
 }
 
@@ -40,7 +39,7 @@ class Teacher implements TeacherInterface {
   }
 }
 
-function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
+function createEmployee(salary: number | string): Employee {
   if (typeof salary === "number" && salary < 500) {
     return new Teacher()
   }
@@ -61,14 +60,8 @@ function executeWork(employee: Employee) {
   }
 }
 
-
-
-
-console.log(executeWork(createEmployee(400)))
-console.log(executeWork(createEmployee(700)))
-
-
-
 console.log(createEmployee(400))
 console.log(createEmployee("400"))
 console.log(createEmployee(600))
+console.log(executeWork(createEmployee(400)))
+console.log(executeWork(createEmployee(700)))
