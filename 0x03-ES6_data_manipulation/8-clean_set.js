@@ -1,5 +1,5 @@
 export default function cleanSet(set, startStr) {
-  if (!startStr || !(set instanceof Set) || typeof startStr !== 'string') return '';
+  if (!(set instanceof Set) || typeof startStr !== 'string') return '';
 
   return Array.from(set).reduce((acc, el, idx) => {
     let prefix = acc;
