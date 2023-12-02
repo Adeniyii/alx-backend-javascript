@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
-exports.default = function(message) {
-  console.log(message)
-}
+module.exports = function (message) {
+  console.log(message);
+};
