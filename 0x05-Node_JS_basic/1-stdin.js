@@ -7,9 +7,9 @@ function printWelcome() {
       process.stdout.write('Your name is: ' + chunk);
     }
   });
-  process.on('SIGINT', function() {
+  process.stdin.on('end', function() {
     process.stdout.write('This important software is now closing\n');
-    process.exit(0);
+    // process.exit(0);
   });
 }
 
